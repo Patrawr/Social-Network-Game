@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="128" tileheight="128" nextobjectid="1">
+ <tileset firstgid="1" name="RPG" tilewidth="128" tileheight="128">
+  <image source="../Assets/Kenney Pack/Art (13.544 files)/RPG pack (230 assets)/Spritesheet/RPGpack_sheet.png" width="2560" height="1664"/>
+ </tileset>
+ <tileset firstgid="261" name="roguelikeSheet_transparent" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="../Assets/Kenney Pack/Art (13.544 files)/Roguelike pack 16x (1700 assets)/Spritesheet/roguelikeSheet_transparent.png" width="968" height="526"/>
+ </tileset>
+ <layer name="Ground" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYKIz5gZiUSAWoxNOgNLyNLbXGw2L0cleXHjU3uFtr/EA2Ss+au+ovYPIXl0oHrWXPvGrMwD2kmsnLe0VH4b2EjJ3JNlLjLsosZdcvZTYy0SieukBCueRZi96/GoCsRadsTYQAwBHIE+r
+  </data>
+ </layer>
+ <layer name="Buildings/Objects" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJy1lk9KQzEQxkMX/ner2GpV3AnVgroVLWjRegb1GnoBV3bhDdqFC/deQvAKQm/iBDLw+b2ZlzzFgY/3L8lvJjNJXgjNrfWLPp7NieYNLaTvn+naSyqxW9Ed6N5o0xZ1DG0mzgyYveQHPlt2LRqBbuh7r4DLmqW+D6IX0eM/cLEd6zlxxxC39h2Fv3N5PvV5InoVTeFdJ12HokvQFXFjTXUd7lao1hhyT0UD0Rm871A76z7agegwoyWKHdmWv/skXS/sO45jWTtU55zntc4PbZOrl2XRimjV4KKvAcbU9/G5RYr912gMy7ZFO6Jdh4tsK16cu3jVXPZpDI1PtZfhMieEKtdqy3nU+FjMtXJixevtucw9Eh0bOnG4GAuvm/jsrYfSvV3Ny69Xv5hbr781Fsvbz5Djzbv297jYjs/FbvDzm8u31jPXssWN/i2Gn/nB+XsyxlazuLm88rxgfnA8i8v5tnjWeYnG9cvcUQ13ndrGM3qQNG4QL3KtszzHnQB36vC47ku5aMpVO0/MeP5e1MTalMt+K5flWd16U671D8H1w/GGGu4bsOviZf9xX+J4S7jD5DvvE2p8nkZthGpdKMPiWmvY+tfp07ilss5fjxtC1ffSfYb7cr94/yF6z4zDfer2u9I5+Mr4n7OSOUDT/0m2b/98ZvY=
+  </data>
+ </layer>
+ <layer name="Trees/building Details" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJy9VjlLQ0EQXmy9KgWrePwFa1H8VZ6IZ+VRaSw9Ko8yaALaa0zAWIhoTKJoZ2ElWDlDZmAy7u7bt4R88LH75u3bb449njGtKJn2oBxo/6S2ASwAc8qeFm/UVoTtQ9gZ94H+xaCSPOQftH8aM8BF4GzAXK7YYsZuku5WwFy2uGNygTgALgAPI7+PxQTwCzjZIb2bDuloVNVzyL6/SKlhG/9NLe/zhmWM9uUypa5vLo2i6Nt8iUXSXLWE92nOYVddig67D+3IgYwtH/H9O/DHw1i49hrnWucrZm/a6qb3GoNzrdeCa7wPtrrxXkuKI3StrQI3gGuB4zGOOeC8srM/Np91DVAzS7r7gdoY9zZwh575DvLlVdcgS1wnXeRdgPYR8DhhjK8eqHlG/XPSrdOzT38KOE19mcNl4Ar1ffGj5jPwiVrUxnWRE/oSS6Z5Vz6a5l2J+1zmcBe4B7z1aLrQMGFrkvMhzxjWfQ3UehH9K+M+/2TN6hbbCfCUfNH/PK4z8JreFTz+VZVOybTW8YHoQz6gryF18J849l6QGt3AHsFe8W7ANONEHa4r/xOnOYe1BrIPOC7YT9pdwCHTjBNrUKc5cM0XTbpzOAMcVhwBDgJ/qc2QjVEmLV7rGGeNtEP/tWy6o6Y1/jGly3nFXGN9OE7U/gO8j5LV
+  </data>
+ </layer>
+</map>

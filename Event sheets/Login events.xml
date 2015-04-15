@@ -44,7 +44,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="3" name="Set enabled" sid="8651540193189224" type="JoinButton">
+                        <action id="3" name="Set enabled" sid="8651540193189224" type="LoginButton">
                             <param id="0" name="Mode">0</param>
                         </action>
                     </actions>
@@ -54,7 +54,7 @@
                         <condition id="-22" name="Else" sid="317397003200696" type="System" />
                     </conditions>
                     <actions>
-                        <action id="3" name="Set enabled" sid="3601060704976601" type="JoinButton">
+                        <action id="3" name="Set enabled" sid="3601060704976601" type="LoginButton">
                             <param id="0" name="Mode">1</param>
                         </action>
                     </actions>
@@ -64,10 +64,7 @@
         <comment>When clicking &apos;Join&apos; or pressing enter with a non-empty name, store the entered name in the global variable and go to the Game layout which will then try to connect.</comment>
         <event-block any="1" sid="2250300775226276">
             <conditions>
-                <condition id="0" name="On clicked" sid="281406848246412" type="JoinButton" />
-                <condition id="0" name="On key pressed" sid="2494264979247668" type="Keyboard">
-                    <param id="0" name="Key">13 (Return)</param>
-                </condition>
+                <condition id="0" name="On clicked" sid="281406848246412" type="RegisterButton2" />
             </conditions>
             <actions />
             <sub-events>
@@ -80,14 +77,48 @@
                         <condition id="12" name="Supports multiplayer" sid="1583940091524849" type="Multiplayer" />
                     </conditions>
                     <actions>
-                        <action id="-9" name="Set value" sid="383394030999022" type="System">
-                            <param id="0" name="Variable">MyUsername</param>
-                            <param id="1" name="Value">NameTextBox.Text</param>
-                        </action>
-                        <action id="-2" name="Go to layout" sid="6347285549464009" type="System">
-                            <param id="0" name="Layout">Game</param>
+                        <action id="2" name="Post to URL" sid="9932155018475782" type="AJAX">
+                            <param id="0" name="Tag">&quot;RegisterUser&quot;</param>
+                            <param id="1" name="URL">&quot;http://pwgames.net/files/registeruser.php?username=&quot;&amp;NameTextBox.Text&amp;&quot;&amp;password=&quot;&amp;PasswordTextBox.Text</param>
+                            <param id="2" name="Data">&quot;&quot;</param>
+                            <param id="3" name="Method">&quot;POST&quot;</param>
                         </action>
                     </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="7897623750900527">
+            <conditions>
+                <condition id="0" name="On completed" sid="3680729817779456" type="AJAX">
+                    <param id="0" name="Tag">&quot;RegisterUser&quot;</param>
+                </condition>
+                <condition id="0" name="On clicked" sid="8483108219109532" type="LoginButton" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="383394030999022" type="System">
+                    <param id="0" name="Variable">MyUsername</param>
+                    <param id="1" name="Value">NameTextBox.Text</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="6347285549464009" type="System">
+                    <param id="0" name="Layout">Game</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9232379253322098">
+            <conditions>
+                <condition id="0" name="On clicked" sid="409331642657517" type="LoginButton" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="7293629712535696">
+                    <conditions>
+                        <condition id="0" inverted="1" name="Compare text" sid="1819962385453423" type="NameTextBox">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
+                        <condition id="12" name="Supports multiplayer" sid="2906730375074605" type="Multiplayer" />
+                    </conditions>
+                    <actions />
                 </event-block>
             </sub-events>
         </event-block>

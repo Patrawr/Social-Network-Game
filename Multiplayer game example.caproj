@@ -10,6 +10,7 @@
     <unique-id>11p9kixz7scmw</unique-id>
     <saved-with-version>20000</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
         <plugin author="Scirra" id="Arr" version="1">Array</plugin>
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
@@ -20,18 +21,22 @@
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TextBox" version="1">Text box</plugin>
+        <plugin author="Scirra" id="Tilemap" version="1">Tilemap</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="Physics" version="1">Physics</behavior>
+        <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
+        <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
     </used-behaviors>
     <used-effects />
     <configurations>
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
     <window-size>
-        <width>1024</width>
-        <height>768</height>
+        <width>1920</width>
+        <height>1080</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <preview-effects>1</preview-effects>
@@ -45,13 +50,13 @@
         <prop name="Orientations">Any</prop>
         <prop name="Pause on unfocus">No</prop>
         <prop name="Physics engine">Box2D web</prop>
-        <prop name="Preview browser">(default)</prop>
+        <prop name="Preview browser">Chrome</prop>
         <prop name="Sampling">Linear</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder>
         <object-folder name="Login screen">
-            <object-type name="JoinButton" sid="1468454303974339">
+            <object-type name="LoginButton" sid="1468454303974339">
                 <plugin id="Button" />
             </object-type>
             <object-type name="Title" sid="8010562696573082">
@@ -64,6 +69,12 @@
                 <plugin id="Text" />
             </object-type>
             <object-type name="ViewTutorial" sid="6894459090786853">
+                <plugin id="Button" />
+            </object-type>
+            <object-type name="PasswordTextBox" sid="2508477350052441">
+                <plugin id="TextBox" />
+            </object-type>
+            <object-type name="RegisterButton2" sid="4564285838970105">
                 <plugin id="Button" />
             </object-type>
         </object-folder>
@@ -119,6 +130,12 @@
                     <behavior-type name="BoundToLayout" sid="2087010186585071">
                         <behavior id="bound" />
                     </behavior-type>
+                    <behavior-type name="ScrollTo" sid="3399213611243222">
+                        <behavior id="scrollto" />
+                    </behavior-type>
+                    <behavior-type name="Physics" sid="7042627656168492">
+                        <behavior id="Physics" />
+                    </behavior-type>
                 </behaviors>
                 <container>
                     <type>Peer</type>
@@ -160,6 +177,11 @@
             </object-type>
             <object-type name="PeerName" sid="8558169904638055">
                 <plugin id="Text" />
+                <behaviors>
+                    <behavior-type name="Pin" sid="7541481285203018">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
                 <container>
                     <type>Peer</type>
                     <type>PeerName</type>
@@ -195,6 +217,39 @@
         <object-type name="Browser" sid="9630530190288802">
             <plugin id="Browser" />
         </object-type>
+        <object-type name="AJAX" sid="5819306810180981">
+            <plugin id="AJAX" />
+        </object-type>
+        <object-type name="Tilemap" sid="2859929301909762">
+            <plugin id="Tilemap" />
+            <texture original-source="C:\Repositories\Assets\Roguelike Pack\Map\../Spritesheet/roguelikeSheet_transparent.png" />
+            <tiles />
+        </object-type>
+        <object-type name="Ground" sid="3985982410613471">
+            <plugin id="Tilemap" />
+            <texture original-source="C:\Repositories\Social Network Game\../Assets/Kenney Pack/Art (13.544 files)/RPG pack (230 assets)/Spritesheet/RPGpack_sheet.png" />
+            <tiles />
+        </object-type>
+        <object-type name="Tilemap2" sid="8337603648783824">
+            <plugin id="Tilemap" />
+            <texture />
+            <tiles />
+        </object-type>
+        <object-type name="BuildingsObjects" sid="370870567258381">
+            <plugin id="Tilemap" />
+            <texture original-source="C:\Repositories\Social Network Game\../Assets/Kenney Pack/Art (13.544 files)/RPG pack (230 assets)/Spritesheet/RPGpack_sheet.png" />
+            <tiles />
+        </object-type>
+        <object-type name="TreesBuildingDetail" sid="5079359971928196">
+            <plugin id="Tilemap" />
+            <behaviors>
+                <behavior-type name="Physics" sid="6393132719198576">
+                    <behavior id="Physics" />
+                </behavior-type>
+            </behaviors>
+            <texture original-source="C:\Repositories\Social Network Game\../Assets/Kenney Pack/Art (13.544 files)/RPG pack (230 assets)/Spritesheet/RPGpack_sheet.png" />
+            <tiles />
+        </object-type>
     </object-folder>
     <families>
         <family name="AimSpotFamily" plugin-id="Sprite" sid="4858349354391145">
@@ -217,6 +272,7 @@
         <global-instance type="Keyboard" uid="15" />
         <global-instance type="Function" uid="30" />
         <global-instance type="Browser" uid="9" />
+        <global-instance type="AJAX" uid="10" />
     </global-instances>
     <sounds-folder />
     <music-folder />

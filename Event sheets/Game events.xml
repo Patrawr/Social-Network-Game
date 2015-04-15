@@ -351,11 +351,11 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="14" name="Set client state" sid="1498586099997287" type="Multiplayer">
+                                <action disabled="1" id="14" name="Set client state" sid="1498586099997287" type="Multiplayer">
                                     <param id="0" name="Tag">&quot;lookx&quot;</param>
                                     <param id="1" name="Value">Mouse.X</param>
                                 </action>
-                                <action id="14" name="Set client state" sid="3799643404182033" type="Multiplayer">
+                                <action disabled="1" id="14" name="Set client state" sid="3799643404182033" type="Multiplayer">
                                     <param id="0" name="Tag">&quot;looky&quot;</param>
                                     <param id="1" name="Value">Mouse.Y</param>
                                 </action>
@@ -530,6 +530,9 @@
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="2467998518019349" type="Peer">
                                             <param id="0" name="Control">0</param>
                                         </action>
+                                        <action id="-8" name="Set angle" sid="6108289996269326" type="Peer">
+                                            <param id="0" name="Angle">180</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block sid="7852755613872817">
@@ -543,6 +546,9 @@
                                     <actions>
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="9235393114319848" type="Peer">
                                             <param id="0" name="Control">2</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="2019787178932349" type="Peer">
+                                            <param id="0" name="Angle">-90</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -558,6 +564,9 @@
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="3972249153136424" type="Peer">
                                             <param id="0" name="Control">1</param>
                                         </action>
+                                        <action id="-8" name="Set angle" sid="8103878656978873" type="Peer">
+                                            <param id="0" name="Angle">0</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block sid="9219847413697906">
@@ -571,6 +580,9 @@
                                     <actions>
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="2350106889447663" type="Peer">
                                             <param id="0" name="Control">3</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="2616309666199477" type="Peer">
+                                            <param id="0" name="Angle">90</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -626,6 +638,9 @@
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="363034383993945" type="Peer">
                                             <param id="0" name="Control">0</param>
                                         </action>
+                                        <action id="-8" name="Set angle" sid="5017131183515351" type="Peer">
+                                            <param id="0" name="Angle">180</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block any="1" sid="2630787970132579">
@@ -640,6 +655,9 @@
                                     <actions>
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="6179025650672449" type="Peer">
                                             <param id="0" name="Control">2</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="9100234350316291" type="Peer">
+                                            <param id="0" name="Angle">-90</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -656,6 +674,9 @@
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="1898623469443832" type="Peer">
                                             <param id="0" name="Control">1</param>
                                         </action>
+                                        <action id="-8" name="Set angle" sid="5165989016355502" type="Peer">
+                                            <param id="0" name="Angle">0</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block any="1" sid="9667144375544474">
@@ -670,6 +691,9 @@
                                     <actions>
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="9349236583628263" type="Peer">
                                             <param id="0" name="Control">3</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="1086561146729875" type="Peer">
+                                            <param id="0" name="Angle">90</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1056,6 +1080,9 @@
                                     <param id="0" name="Instance variable">lookaty</param>
                                     <param id="1" name="Value">Mouse.Y</param>
                                 </action>
+                                <action behavior="ScrollTo" id="1" name="Set enabled" sid="374995686711612" type="Peer">
+                                    <param id="0" name="State">1</param>
+                                </action>
                             </actions>
                         </event-block>
                         <comment>All players are pointed at their &apos;lookatx&apos; and &apos;lookaty&apos; variables, and the AimSpot object (in a container with Peer) positioned to the same location to indicate the aim point. The host and peers update these values in different ways, but both always need players to be actually pointing at their look-at positions. We also position the PeerName labels above each peer and set it to their name, so we can see who is who, and display their stats (health, kills and deaths). Finally we make sure the lasers and aim spots appear on the &quot;Lasers&quot; layer, since syncing objects does not always put them on the right layer.</comment>
@@ -1064,11 +1091,11 @@
                                 <condition id="-1" name="Every tick" sid="4628645942487063" type="System" />
                             </conditions>
                             <actions>
-                                <action id="-22" name="Set angle toward position" sid="1911753413642723" type="Peer">
+                                <action disabled="1" id="-22" name="Set angle toward position" sid="1911753413642723" type="Peer">
                                     <param id="0" name="X">Self.lookatx</param>
                                     <param id="1" name="Y">Self.lookaty</param>
                                 </action>
-                                <action id="-3" name="Set position" sid="8266768530851442" type="AimSpot">
+                                <action disabled="1" id="-3" name="Set position" sid="8266768530851442" type="AimSpot">
                                     <param id="0" name="X">Peer.lookatx</param>
                                     <param id="1" name="Y">Peer.lookaty</param>
                                 </action>
@@ -1077,15 +1104,15 @@
                                     <param id="1" name="Y">Peer.Y - 55</param>
                                 </action>
                                 <action id="0" name="Set text" sid="8963732300173281" type="PeerName">
-                                    <param id="0" name="Text">Multiplayer.PeerAliasFromID(Peer.peerid) &amp; &quot; (&quot; &amp; Peer.health &amp; &quot;%)&quot; &amp; newline &amp; Peer.kills &amp; &quot; kills, &quot; &amp; Peer.deaths &amp; &quot; deaths&quot;</param>
+                                    <param id="0" name="Text">Multiplayer.PeerAliasFromID(Peer.peerid)</param>
                                 </action>
                                 <action id="-26" name="Move to layer" sid="7434418277838572" type="Peer">
-                                    <param id="0" name="Layer">&quot;Game&quot;</param>
+                                    <param id="0" name="Layer">&quot;Details&quot;</param>
                                 </action>
-                                <action id="-26" name="Move to layer" sid="2911903752046497" type="PeerLaser">
+                                <action disabled="1" id="-26" name="Move to layer" sid="2911903752046497" type="PeerLaser">
                                     <param id="0" name="Layer">&quot;Lasers&quot;</param>
                                 </action>
-                                <action id="-26" name="Move to layer" sid="7466844330938105" type="AimSpot">
+                                <action disabled="1" id="-26" name="Move to layer" sid="7466844330938105" type="AimSpot">
                                     <param id="0" name="Layer">&quot;Lasers&quot;</param>
                                 </action>
                                 <action id="-26" name="Move to layer" sid="344509275179337" type="PeerName">
@@ -1111,18 +1138,18 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-4" name="Set position to another object" sid="4784074445792489" type="PeerLaser">
+                                        <action disabled="1" id="-4" name="Set position to another object" sid="4784074445792489" type="PeerLaser">
                                             <param id="0" name="Object">Peer</param>
                                             <param id="1" name="Image point (optional)">1</param>
                                         </action>
-                                        <action id="-22" name="Set angle toward position" sid="9313873539234319" type="PeerLaser">
+                                        <action disabled="1" id="-22" name="Set angle toward position" sid="9313873539234319" type="PeerLaser">
                                             <param id="0" name="X">Peer.lookatx</param>
                                             <param id="1" name="Y">Peer.lookaty</param>
                                         </action>
-                                        <action id="-5" name="Set width" sid="360013286974248" type="PeerLaser">
+                                        <action disabled="1" id="-5" name="Set width" sid="360013286974248" type="PeerLaser">
                                             <param id="0" name="Width">distance(PeerLaser.X, PeerLaser.Y, Peer.lookatx, Peer.lookaty)</param>
                                         </action>
-                                        <action id="-15" name="Set visible" sid="8101732601140227" type="PeerLaser">
+                                        <action disabled="1" id="-15" name="Set visible" sid="8101732601140227" type="PeerLaser">
                                             <param id="0" name="Visibility">1</param>
                                         </action>
                                     </actions>
@@ -1132,7 +1159,7 @@
                                         <condition id="-22" name="Else" sid="5456220674553035" type="System" />
                                     </conditions>
                                     <actions>
-                                        <action id="-15" name="Set visible" sid="1159169287522366" type="PeerLaser">
+                                        <action disabled="1" id="-15" name="Set visible" sid="1159169287522366" type="PeerLaser">
                                             <param id="0" name="Visibility">0</param>
                                         </action>
                                     </actions>
@@ -1227,6 +1254,26 @@
                                 <action id="8" name="Set unfocused" sid="59320638090893" type="ChatTextBox" />
                                 <action id="8" name="Set unfocused" sid="7112764078842695" type="ChatSend" />
                             </actions>
+                        </event-block>
+                        <event-block sid="3371355648069472">
+                            <conditions>
+                                <condition id="0" name="On function" sid="4609597374579082" type="Function">
+                                    <param id="0" name="Name">&quot;PeerOrientation&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="1262018484700671">
+                                    <conditions>
+                                        <condition behavior="8Direction" id="0" name="Is moving" sid="6640470575943105" type="Peer" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-8" name="Set angle" sid="3072737330630217" type="Peer">
+                                            <param id="0" name="Angle">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-group>
