@@ -153,6 +153,9 @@
                         <action id="1" name="Connect" sid="7537126393271732" type="Multiplayer">
                             <param id="0" name="Server">&quot;wss://multiplayer.scirra.com&quot;</param>
                         </action>
+                        <action behavior="Physics" id="12" name="Set world gravity" sid="583194086427789" type="Peer">
+                            <param id="0" name="Gravity">0</param>
+                        </action>
                     </actions>
                 </event-block>
                 <comment>When connected, request to log in.</comment>
@@ -623,7 +626,11 @@
                                     <param id="2" name="Value">Multiplayer.MyID</param>
                                 </condition>
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="2315115583278569" type="Peer">
+                                    <param id="0" name="Max Speed">300</param>
+                                </action>
+                            </actions>
                             <sub-events>
                                 <event-block any="1" sid="9818674066350092">
                                     <conditions>
@@ -959,7 +966,7 @@
                             </sub-events>
                         </event-block>
                         <comment>If a peer has run out of health, we move them back to a random position, reset their health, and add to their death count.</comment>
-                        <event-block sid="2351425807777953">
+                        <event-block disabled="1" sid="2351425807777953">
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" sid="2985878936901063" type="Peer">
                                     <param id="0" name="Instance variable">health</param>
@@ -983,7 +990,7 @@
                             </actions>
                             <sub-events>
                                 <comment>When a peer died, we also want to increment the kills counter for the last peer who shot them. First of all, we don&apos;t want to give a player a kill for shooting themselves! So long as someone else shot them, we add one to their kill count. Note however we need to pick a different &apos;Peer&apos; to the one that&apos;s died, so we call a function to reset the picked objects again.</comment>
-                                <event-block sid="8487439007661947">
+                                <event-block disabled="1" sid="8487439007661947">
                                     <conditions>
                                         <condition id="-7" name="Compare instance variable" sid="7594595665311121" type="Peer">
                                             <param id="0" name="Instance variable">peerid</param>
@@ -1116,9 +1123,15 @@
                                     <param id="0" name="Layer">&quot;Lasers&quot;</param>
                                 </action>
                                 <action id="-26" name="Move to layer" sid="344509275179337" type="PeerName">
-                                    <param id="0" name="Layer">&quot;Info&quot;</param>
+                                    <param id="0" name="Layer">&quot;Details&quot;</param>
                                 </action>
                             </actions>
+                            <sub-events>
+                                <event-block sid="9050799114181321">
+                                    <conditions />
+                                    <actions />
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <comment>Similarly to above, the host and peers update their inputs in different ways, but whenever the &apos;shooting&apos; input (bit 4) is set, we want to display the laser to show that they&apos;re shooting.</comment>
                         <event-block sid="3657601176564042">

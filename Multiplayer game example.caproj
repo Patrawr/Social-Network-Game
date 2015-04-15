@@ -29,6 +29,7 @@
         <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
         <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
+        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
     <used-effects />
     <configurations>
@@ -245,6 +246,9 @@
             <behaviors>
                 <behavior-type name="Physics" sid="6393132719198576">
                     <behavior id="Physics" />
+                </behavior-type>
+                <behavior-type name="Solid" sid="700254910547886">
+                    <behavior id="solid" />
                 </behavior-type>
             </behaviors>
             <texture original-source="C:\Repositories\Social Network Game\../Assets/Kenney Pack/Art (13.544 files)/RPG pack (230 assets)/Spritesheet/RPGpack_sheet.png" />

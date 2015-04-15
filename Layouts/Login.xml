@@ -116,7 +116,7 @@
                         <tooltip></tooltip>
                         <initial-visibility>Visible</initial-visibility>
                         <enabled>No</enabled>
-                        <auto-font-size>No</auto-font-size>
+                        <auto-font-size>Yes</auto-font-size>
                         <id-optional></id-optional>
                         <checked>No</checked>
                     </properties>
@@ -128,57 +128,6 @@
                         <z>0</z>
                         <width>158</width>
                         <height>45</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                    </world>
-                </instance>
-                <instance type="FormLabel" uid="7">
-                    <properties>
-                        <text>Learn more about how this example works: </text>
-                        <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-32,400,0</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Right</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
-                        <hotspot>Top-left</hotspot>
-                        <wrapping>Word</wrapping>
-                        <line-height>0</line-height>
-                    </properties>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>6</x>
-                        <y>551</y>
-                        <z>0</z>
-                        <width>727</width>
-                        <height>113</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="ViewTutorial" uid="8">
-                    <properties>
-                        <type>Button</type>
-                        <text>View tutorial</text>
-                        <tooltip></tooltip>
-                        <initial-visibility>Visible</initial-visibility>
-                        <enabled>Yes</enabled>
-                        <auto-font-size>Yes</auto-font-size>
-                        <id-optional></id-optional>
-                        <checked>No</checked>
-                    </properties>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>739</x>
-                        <y>558</y>
-                        <z>0</z>
-                        <width>121</width>
-                        <height>28</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
