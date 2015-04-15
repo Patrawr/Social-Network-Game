@@ -5,6 +5,7 @@
     <events>
         <comment>The alias to pass to the next layout.</comment>
         <variable comment="Name entered on login screen" constant="0" name="MyUsername" sid="2622484095485436" static="0" type="text"></variable>
+        <variable constant="0" name="MyPassword" sid="2878839929201273" static="0" type="text"></variable>
         <event-block sid="2836949466833005">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="6126620317071436" type="System" />
@@ -47,6 +48,12 @@
                         <action id="3" name="Set enabled" sid="8651540193189224" type="LoginButton">
                             <param id="0" name="Mode">0</param>
                         </action>
+                        <action id="3" name="Set enabled" sid="5780992531137212" type="DeleteAccountbutton">
+                            <param id="0" name="Mode">0</param>
+                        </action>
+                        <action id="3" name="Set enabled" sid="9778831616872275" type="RegisterButton2">
+                            <param id="0" name="Mode">0</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="297632502846597">
@@ -55,6 +62,12 @@
                     </conditions>
                     <actions>
                         <action id="3" name="Set enabled" sid="3601060704976601" type="LoginButton">
+                            <param id="0" name="Mode">1</param>
+                        </action>
+                        <action id="3" name="Set enabled" sid="1378108335303926" type="DeleteAccountbutton">
+                            <param id="0" name="Mode">1</param>
+                        </action>
+                        <action id="3" name="Set enabled" sid="3076414511976689" type="RegisterButton2">
                             <param id="0" name="Mode">1</param>
                         </action>
                     </actions>
@@ -71,6 +84,10 @@
                 <event-block sid="4386750916393495">
                     <conditions>
                         <condition id="0" inverted="1" name="Compare text" sid="5037371393004393" type="NameTextBox">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
+                        <condition id="0" inverted="1" name="Compare text" sid="173690902777709" type="PasswordTextBox">
                             <param id="0" name="Text">&quot;&quot;</param>
                             <param id="1" name="Case">0</param>
                         </condition>
@@ -92,18 +109,22 @@
                 <condition id="0" name="On completed" sid="3680729817779456" type="AJAX">
                     <param id="0" name="Tag">&quot;RegisterUser&quot;</param>
                 </condition>
-                <condition id="0" name="On clicked" sid="8483108219109532" type="LoginButton" />
             </conditions>
             <actions>
                 <action id="-9" name="Set value" sid="383394030999022" type="System">
                     <param id="0" name="Variable">MyUsername</param>
                     <param id="1" name="Value">NameTextBox.Text</param>
                 </action>
+                <action id="-9" name="Set value" sid="8354385191248643" type="System">
+                    <param id="0" name="Variable">MyPassword</param>
+                    <param id="1" name="Value">PasswordTextBox.Text</param>
+                </action>
                 <action id="-2" name="Go to layout" sid="6347285549464009" type="System">
                     <param id="0" name="Layout">Game</param>
                 </action>
             </actions>
         </event-block>
+        <comment>Logging the user in, checking if credentials match the db</comment>
         <event-block sid="9232379253322098">
             <conditions>
                 <condition id="0" name="On clicked" sid="409331642657517" type="LoginButton" />
@@ -116,20 +137,191 @@
                             <param id="0" name="Text">&quot;&quot;</param>
                             <param id="1" name="Case">0</param>
                         </condition>
+                        <condition id="0" inverted="1" name="Compare text" sid="1109168683581512" type="PasswordTextBox">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
                         <condition id="12" name="Supports multiplayer" sid="2906730375074605" type="Multiplayer" />
                     </conditions>
+                    <actions>
+                        <action id="0" name="Request URL" sid="7866229731477264" type="AJAX">
+                            <param id="0" name="Tag">&quot;LoginUser&quot;</param>
+                            <param id="1" name="URL">&quot;http://pwgames.net/files/getuser.php?inputusername=&quot;&amp;NameTextBox.Text</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8832897625908238" type="System">
+                            <param id="0" name="Variable">MyUsername</param>
+                            <param id="1" name="Value">NameTextBox.Text</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9669638057976239" type="System">
+                            <param id="0" name="Variable">MyPassword</param>
+                            <param id="1" name="Value">PasswordTextBox.Text</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="6273040689341612">
+            <conditions>
+                <condition id="0" name="On completed" sid="2472876908726598" type="AJAX">
+                    <param id="0" name="Tag">&quot;LoginUser&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="843472577284484">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="5830775438524168" type="System">
+                            <param id="0" name="Variable">MyPassword</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">tokenat(AJAX.LastData,1,&quot;|&quot;)</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="8237196476359153" type="System">
+                            <param id="0" name="Variable">MyUsername</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">tokenat(AJAX.LastData,0,&quot;|&quot;)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="5946703659352307" type="System">
+                            <param id="0" name="Layout">Game</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5536769623841136">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="6694085026818722" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="5488019084032192" type="AJAXResultText">
+                            <param id="0" name="Text">&quot;Invalid User Credentials&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="8858980202864567">
+            <conditions>
+                <condition id="0" name="On clicked" sid="3881692968639346" type="UpdatePasswordButton" />
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="1446339273145743" type="NewPasswordLabel">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="3" name="Set visible" sid="9240590779302805" type="NewPasswordTextBox">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="0" name="Set text" sid="7317203732864929" type="UpdatePasswordButton">
+                    <param id="0" name="Text">&quot;Update Password&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Updating a user password</comment>
+        <event-block sid="4738423923861959">
+            <conditions>
+                <condition id="0" name="On clicked" sid="439540765598579" type="UpdatePasswordButton" />
+                <condition id="-9" name="Is visible" sid="8184448019282403" type="NewPasswordLabel" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="7914214984338899">
+                    <conditions>
+                        <condition id="0" inverted="1" name="Compare text" sid="2947840746299156" type="NameTextBox">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
+                        <condition id="0" inverted="1" name="Compare text" sid="5939331388339104" type="PasswordTextBox">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
+                        <condition id="0" inverted="1" name="Compare text" sid="5794131143272726" type="NewPasswordTextBox">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
+                        <condition id="12" name="Supports multiplayer" sid="3165600332298425" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Post to URL" sid="168087542642718" type="AJAX">
+                            <param id="0" name="Tag">&quot;UpdateUser&quot;</param>
+                            <param id="1" name="URL">&quot;http://pwgames.net/files/updateuser.php?username=&quot;&amp;NameTextBox.Text&amp;&quot;&amp;password=&quot;&amp;PasswordTextBox.Text&amp;&quot;&amp;newpassword=&quot;&amp;NewPasswordTextBox.Text</param>
+                            <param id="2" name="Data">&quot;&quot;</param>
+                            <param id="3" name="Method">&quot;POST&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8554914218753747">
+                    <conditions />
                     <actions />
                 </event-block>
             </sub-events>
         </event-block>
-        <event-block sid="1728880110743534">
+        <event-block sid="625428123874907">
             <conditions>
-                <condition id="0" name="On clicked" sid="7637827391336329" type="ViewTutorial" />
+                <condition id="0" name="On completed" sid="6256965145310621" type="AJAX">
+                    <param id="0" name="Tag">&quot;UpdateUser&quot;</param>
+                </condition>
             </conditions>
             <actions>
-                <action id="8" name="Open URL in new window" sid="6070447773137408" type="Browser">
-                    <param id="0" name="URL">&quot;https://www.scirra.com/tutorials/915/multiplayer-tutorial-3-real-time-game&quot;</param>
-                    <param id="1" name="Tag">&quot;NewWindow&quot;</param>
+                <action id="0" name="Set text" sid="689529638810259" type="AJAXResultText">
+                    <param id="0" name="Text">&quot;Your request to update was sent. Please try logging in with your new credentials&quot;</param>
+                </action>
+                <action id="-15" name="Set visible" sid="5239970544802099" type="NewPasswordLabel">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="3" name="Set visible" sid="6406254358559568" type="NewPasswordTextBox">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="0" name="Set text" sid="8249570055679419" type="NameTextBox">
+                    <param id="0" name="Text">&quot;&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="503967106227829" type="PasswordTextBox">
+                    <param id="0" name="Text">&quot;&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="4552305758107291" type="NewPasswordTextBox">
+                    <param id="0" name="Text">&quot;&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="542602078596508" type="UpdatePasswordButton">
+                    <param id="0" name="Text">&quot;Change Password&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Delete Account</comment>
+        <event-block any="1" sid="6545562297892189">
+            <conditions>
+                <condition id="0" name="On clicked" sid="315872039265417" type="DeleteAccountbutton" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="3281184069149631">
+                    <conditions>
+                        <condition id="0" inverted="1" name="Compare text" sid="8414180077983183" type="NameTextBox">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
+                        <condition id="0" inverted="1" name="Compare text" sid="9254647904848063" type="PasswordTextBox">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Post to URL" sid="1311233453632459" type="AJAX">
+                            <param id="0" name="Tag">&quot;DeleteUser&quot;</param>
+                            <param id="1" name="URL">&quot;http://pwgames.net/files/deleteuser.php?username=&quot;&amp;NameTextBox.Text&amp;&quot;&amp;password=&quot;&amp;PasswordTextBox.Text</param>
+                            <param id="2" name="Data">&quot;&quot;</param>
+                            <param id="3" name="Method">&quot;POST&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="3765262207700676">
+            <conditions>
+                <condition id="0" name="On completed" sid="7497949284109337" type="AJAX">
+                    <param id="0" name="Tag">&quot;DeleteUser&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="1158062024144588" type="AJAXResultText">
+                    <param id="0" name="Text">&quot;Your account has been deleted.&quot;</param>
                 </action>
             </actions>
         </event-block>

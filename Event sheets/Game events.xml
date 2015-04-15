@@ -7,6 +7,10 @@
         <variable constant="1" name="INSTANCE_NAME" sid="313861102059647" static="0" type="text">default</variable>
         <variable constant="1" name="ROOM_NAME" sid="9805164627532191" static="0" type="text">main</variable>
         <variable constant="0" name="my_coins" sid="9184162616738554" static="0" type="number">0</variable>
+        <variable constant="0" name="my_silicon" sid="2517801758980241" static="0" type="number">0</variable>
+        <variable constant="0" name="siliconToEarn" sid="712841650934634" static="0" type="number">0</variable>
+        <variable constant="0" name="repair_timer" sid="3378680814927693" static="0" type="number">20</variable>
+        <variable constant="0" name="repair_time" sid="2514571403770333" static="0" type="number">20</variable>
         <event-group description="Functions to manage updating the LogText object as messages are added." sid="1791290436183513" title="Message log">
             <sub-events>
                 <comment>This is similar to the chat example, but instead of keeping a log in a text box, we keep it in an ordinary Text object so we can see things behind it. However the text object cannot scroll its text, so instead we keep the last 20 messages in an array, and update the text object from that. This is a simple way to have the messages scroll up as more messages are added.&#x0D;&#x0A;&#x0D;&#x0A;First when adding a log we add the line to the end of an array.</comment>
@@ -151,12 +155,19 @@
                             <param id="3" name="Interpolation">0</param>
                             <param id="4" name="Client value tag">&quot;&quot;</param>
                         </action>
-                        <action id="12" name="Sync instance variable" sid="2180776678300677" type="Multiplayer">
+                        <action disabled="1" id="12" name="Sync instance variable" sid="2180776678300677" type="Multiplayer">
                             <param id="0" name="Object">Peer</param>
                             <param id="1" name="Instance variable">Peer|coins</param>
                             <param id="2" name="Precision">3</param>
                             <param id="3" name="Interpolation">0</param>
                             <param id="4" name="Client value tag">&quot;coins&quot;</param>
+                        </action>
+                        <action id="12" name="Sync instance variable" sid="1127951699383657" type="Multiplayer">
+                            <param id="0" name="Object">Peer</param>
+                            <param id="1" name="Instance variable">Peer|recommendation</param>
+                            <param id="2" name="Precision">3</param>
+                            <param id="3" name="Interpolation">0</param>
+                            <param id="4" name="Client value tag">&quot;recommendation&quot;</param>
                         </action>
                         <action id="11" name="Sync object" sid="659312514328683" type="Multiplayer">
                             <param id="0" name="Object">Coin</param>
@@ -1235,6 +1246,9 @@
                                 <action id="0" name="Set text" sid="9773098101335457" type="Textbox_Coins">
                                     <param id="0" name="Text">my_coins</param>
                                 </action>
+                                <action id="0" name="Set text" sid="7270140636651995" type="Textbox_Silicon">
+                                    <param id="0" name="Text">my_silicon</param>
+                                </action>
                             </actions>
                             <sub-events>
                                 <event-block sid="9050799114181321">
@@ -1378,26 +1392,236 @@
                                 <action id="8" name="Set unfocused" sid="7112764078842695" type="ChatSend" />
                             </actions>
                         </event-block>
-                        <event-block sid="3371355648069472">
-                            <conditions>
-                                <condition id="0" name="On function" sid="4609597374579082" type="Function">
-                                    <param id="0" name="Name">&quot;PeerOrientation&quot;</param>
-                                </condition>
-                            </conditions>
-                            <actions />
+                        <event-group description="" sid="8975942207407241" title="Dialogs/Logout Dialog">
                             <sub-events>
-                                <event-block sid="1262018484700671">
+                                <event-block sid="6284005316510501">
                                     <conditions>
-                                        <condition behavior="8Direction" id="0" name="Is moving" sid="6640470575943105" type="Peer" />
+                                        <condition id="6" name="On object clicked" sid="5156306570215451" type="Mouse">
+                                            <param id="0" name="Mouse button">0</param>
+                                            <param id="1" name="Click type">0</param>
+                                            <param id="2" name="Object clicked">UI_Logout_Button</param>
+                                        </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-8" name="Set angle" sid="3072737330630217" type="Peer">
-                                            <param id="0" name="Angle">0</param>
+                                        <action id="-15" name="Set visible" sid="4184998835727786" type="Cancel">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="8817978203047796" type="LogoutDialogBackground">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="7244409724347022" type="Logout">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="634396680670926" type="LogoutDialog">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="835165896030381" type="LogoutDialogButtonText">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block any="1" sid="934375169164242">
+                                    <conditions>
+                                        <condition id="6" name="On object clicked" sid="7951381362063963" type="Mouse">
+                                            <param id="0" name="Mouse button">0</param>
+                                            <param id="1" name="Click type">0</param>
+                                            <param id="2" name="Object clicked">Cancel</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="307482850756397" type="Cancel">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="1393659223855277" type="LogoutDialogBackground">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="2566209170318485" type="Logout">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="5520986897695009" type="LogoutDialog">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="672525125853767" type="LogoutDialogButtonText">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="8106597025199509">
+                                    <conditions>
+                                        <condition id="6" name="On object clicked" sid="8792806968063227" type="Mouse">
+                                            <param id="0" name="Mouse button">0</param>
+                                            <param id="1" name="Click type">0</param>
+                                            <param id="2" name="Object clicked">Logout</param>
+                                        </condition>
+                                        <condition id="-9" name="Is visible" sid="272387172774111" type="Logout" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="1" name="Close" sid="9812089280054704" type="Browser" />
+                                    </actions>
+                                </event-block>
+                                <comment>Click on barrel to find computer to repair</comment>
+                                <event-block sid="7831528390192497">
+                                    <conditions>
+                                        <condition id="6" name="On object clicked" sid="9618380405986346" type="Mouse">
+                                            <param id="0" name="Mouse button">0</param>
+                                            <param id="1" name="Click type">0</param>
+                                            <param id="2" name="Object clicked">Silicon_Clickbox</param>
+                                        </condition>
+                                        <condition id="-15" inverted="1" name="Is group active" sid="683303113262006" type="System">
+                                            <param id="0" name="Group name">&quot;Repair&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="6003581027489556" type="DialogBackground">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="1690744293159685" type="LeftDialogButton">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="6574977353755372" type="RightDialogButton">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="8721729044561333" type="LeftDialogueText">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="715389516428468" type="RightDialogueText">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="4395607002779007" type="System">
+                                            <param id="0" name="Variable">siliconToEarn</param>
+                                            <param id="1" name="Value">round(random(3,8))</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="2985057941005661" type="Dialogue_Textbox">
+                                            <param id="0" name="Text">&quot;You have found a computer to repair! Would you like to take &quot; &amp;siliconToEarn&amp;&quot; silicon now or send it to your shop for repair (earn &quot;&amp;siliconToEarn*5&amp;&quot; coins)?&quot;</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="6242512859246689" type="Dialogue_Textbox">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Clicking on the repair option</comment>
+                                <event-block sid="3185539345285828">
+                                    <conditions>
+                                        <condition id="6" name="On object clicked" sid="4231540349165042" type="Mouse">
+                                            <param id="0" name="Mouse button">0</param>
+                                            <param id="1" name="Click type">0</param>
+                                            <param id="2" name="Object clicked">RightDialogButton</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="2761747308884822" type="DialogBackground">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="9104696858563466" type="LeftDialogButton">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="8198730503222635" type="RightDialogButton">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="4766843770923367" type="LeftDialogueText">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="724645983720541" type="RightDialogueText">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="4550871291204077" type="Dialogue_Textbox">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-12" name="Set group active" sid="9797650331282596" type="System">
+                                            <param id="0" name="Group name">&quot;Repair&quot;</param>
+                                            <param id="1" name="State">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Take the silicon option</comment>
+                                <event-block sid="6956315659720856">
+                                    <conditions>
+                                        <condition id="6" name="On object clicked" sid="8760698102433379" type="Mouse">
+                                            <param id="0" name="Mouse button">0</param>
+                                            <param id="1" name="Click type">0</param>
+                                            <param id="2" name="Object clicked">LeftDialogButton</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" sid="1570984715006347" type="System">
+                                            <param id="0" name="Variable">my_silicon</param>
+                                            <param id="1" name="Value">siliconToEarn</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="2273371831417548" type="DialogBackground">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="2396082586319548" type="LeftDialogButton">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="5588441856121912" type="RightDialogButton">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="837527528994077" type="LeftDialogueText">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="237006424386299" type="RightDialogueText">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="5179795464236916" type="Dialogue_Textbox">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <comment>Managing computer repairs</comment>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                        <event-group description="" inactive="1" sid="6424955855165156" title="Repair">
+                            <sub-events>
+                                <event-block sid="5345723741617933">
+                                    <conditions>
+                                        <condition id="-6" name="Every X seconds" sid="7862071223219038" type="System">
+                                            <param id="0" name="Interval (seconds)">1.0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="1396406582130017" type="UI_RepairText">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-11" name="Subtract from" sid="4713528003569583" type="System">
+                                            <param id="0" name="Variable">repair_timer</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="1335217511969371" type="UI_RepairText">
+                                            <param id="0" name="Text">&quot;Repair Time: &quot;&amp;repair_timer</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Once the timer is done</comment>
+                                <event-block sid="620545497728072">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="1383410648953996" type="System">
+                                            <param id="0" name="Variable">repair_timer</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="3528827170952819" type="System">
+                                            <param id="0" name="Variable">repair_timer</param>
+                                            <param id="1" name="Value">repair_time</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="7688079861410035" type="System">
+                                            <param id="0" name="Variable">my_coins</param>
+                                            <param id="1" name="Value">siliconToEarn*5</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="7200309245092828" type="UI_RepairText">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-12" name="Set group active" sid="7516440289338686" type="System">
+                                            <param id="0" name="Group name">&quot;Repair&quot;</param>
+                                            <param id="1" name="State">0</param>
                                         </action>
                                     </actions>
                                 </event-block>
                             </sub-events>
-                        </event-block>
+                        </event-group>
                     </sub-events>
                 </event-group>
             </sub-events>

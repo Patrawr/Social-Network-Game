@@ -78,6 +78,18 @@
             <object-type name="RegisterButton2" sid="4564285838970105">
                 <plugin id="Button" />
             </object-type>
+            <object-type name="UpdatePasswordButton" sid="5554112086018497">
+                <plugin id="Button" />
+            </object-type>
+            <object-type name="NewPasswordTextBox" sid="9293619387559893">
+                <plugin id="TextBox" />
+            </object-type>
+            <object-type name="NewPasswordLabel" sid="3576634929978278">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="DeleteAccountbutton" sid="5787106158628817">
+                <plugin id="Button" />
+            </object-type>
         </object-folder>
         <object-folder name="Game">
             <object-type name="AimSpot" sid="5367249510645388">
@@ -124,6 +136,7 @@
                     <instance-variable name="FirstShot" sid="90044639766638" type="boolean" />
                     <instance-variable name="lasthitbypeerid" sid="6358509132487602" type="string" />
                     <instance-variable name="coins" sid="1148169822996324" type="number" />
+                    <instance-variable name="recommendation" sid="8536384972636065" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="8Direction" sid="9740459457043169">
@@ -274,6 +287,231 @@
             <object-type name="Textbox_Coins" sid="2077792651288098">
                 <plugin id="Text" />
             </object-type>
+            <object-type name="Textbox_Silicon" sid="1514624651752118">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="UI_Silicon" sid="8402575712198908">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="573620849900693" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.507692" original-source="C:\Repositories\Social Network Game\Textures\black_inklet.png">
+                            <collision-poly>
+                                <point x="0.329545" y="0.446154" />
+                                <point x="0.5" y="0.0923077" />
+                                <point x="0.647727" y="0.476923" />
+                                <point x="0.659091" y="0.492308" />
+                                <point x="0.681818" y="0.569231" />
+                                <point x="0.5" y="0.984615" />
+                                <point x="0.284091" y="0.615385" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Silicon_Clickbox" sid="7921557358445796">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2173193212275378" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="UI_RepairText" sid="1695392140345254">
+                <plugin id="Text" />
+            </object-type>
+        </object-folder>
+        <object-folder name="UI">
+            <object-type name="Cancel" sid="6766565360912586">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin" sid="3421029634104028">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <container>
+                    <type>LogoutDialogBackground</type>
+                    <type>Cancel</type>
+                    <type>Logout</type>
+                </container>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4000384571159172" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Textures\Space_UI\glassPanel_projection.png">
+                            <collision-poly>
+                                <point x="0.02" y="0.02" />
+                                <point x="0.5" y="0" />
+                                <point x="0.98" y="0.02" />
+                                <point x="1" y="0.5" />
+                                <point x="0.98" y="0.98" />
+                                <point x="0.5" y="1" />
+                                <point x="0.02" y="0.98" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="LogoutDialogBackground" sid="9608038746207782">
+                <plugin id="Sprite" />
+                <container>
+                    <type>LogoutDialogBackground</type>
+                    <type>Cancel</type>
+                    <type>Logout</type>
+                </container>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2764510707209426" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Textures\Space_UI\glassPanel_corners.png">
+                            <collision-poly>
+                                <point x="0.06" y="0.06" />
+                                <point x="0.5" y="0" />
+                                <point x="0.94" y="0.06" />
+                                <point x="1" y="0.5" />
+                                <point x="0.94" y="0.94" />
+                                <point x="0.5" y="1" />
+                                <point x="0.06" y="0.94" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Logout" sid="8625790123905695">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin" sid="8314008886827594">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <container>
+                    <type>LogoutDialogBackground</type>
+                    <type>Cancel</type>
+                    <type>Logout</type>
+                </container>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="790128119090185" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Textures\Space_UI\glassPanel_projection.png">
+                            <collision-poly>
+                                <point x="0.02" y="0.02" />
+                                <point x="0.5" y="0" />
+                                <point x="0.98" y="0.02" />
+                                <point x="1" y="0.5" />
+                                <point x="0.98" y="0.98" />
+                                <point x="0.5" y="1" />
+                                <point x="0.02" y="0.98" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="LogoutDialog" sid="1090502082455064">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="LogoutDialogButtonText" sid="2538827705418552">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="UI_Logout_Button" sid="8599412444478037">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin" sid="7665379709317789">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5872081518566101" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Textures\Space_UI\glassPanel_projection.png">
+                            <collision-poly>
+                                <point x="0.02" y="0.02" />
+                                <point x="0.5" y="0" />
+                                <point x="0.98" y="0.02" />
+                                <point x="1" y="0.5" />
+                                <point x="0.98" y="0.98" />
+                                <point x="0.5" y="1" />
+                                <point x="0.02" y="0.98" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="UI_LogoutButtonText" sid="7295494537201359">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="DialogBackground" sid="2521395640665191">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2585893962358754" speed="5">
+                        <frame duration="1" hotspotX="0.502488" hotspotY="0.504951" original-source="C:\Repositories\Social Network Game\Menu-1.png">
+                            <collision-poly>
+                                <point x="0.02" y="0.02" />
+                                <point x="0.5" y="0" />
+                                <point x="0.98" y="0.02" />
+                                <point x="1" y="0.5" />
+                                <point x="0.98" y="0.98" />
+                                <point x="0.5" y="1" />
+                                <point x="0.02" y="0.98" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="LeftDialogButton" sid="8551100481590611">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin" sid="1159679405207971">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2811085901838399" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Textures\Space_UI\glassPanel_projection.png">
+                            <collision-poly>
+                                <point x="0.02" y="0.02" />
+                                <point x="0.5" y="0" />
+                                <point x="0.98" y="0.02" />
+                                <point x="1" y="0.5" />
+                                <point x="0.98" y="0.98" />
+                                <point x="0.5" y="1" />
+                                <point x="0.02" y="0.98" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="RightDialogButton" sid="8744121133736554">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin" sid="9135384025250895">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7679548153802868" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Textures\Space_UI\glassPanel_projection.png">
+                            <collision-poly>
+                                <point x="0.02" y="0.02" />
+                                <point x="0.5" y="0" />
+                                <point x="0.98" y="0.02" />
+                                <point x="1" y="0.5" />
+                                <point x="0.98" y="0.98" />
+                                <point x="0.5" y="1" />
+                                <point x="0.02" y="0.98" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Dialogue_Textbox" sid="6616676272729428">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="LeftDialogueText" sid="8386876136813898">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="RightDialogueText" sid="462639529952415">
+                <plugin id="Text" />
+            </object-type>
         </object-folder>
         <object-type name="Multiplayer" sid="3325403568138769">
             <plugin id="Multiplayer" />
@@ -325,6 +563,9 @@
             </behaviors>
             <texture original-source="C:\Repositories\Social Network Game\../Assets/Kenney Pack/Art (13.544 files)/RPG pack (230 assets)/Spritesheet/RPGpack_sheet.png" />
             <tiles />
+        </object-type>
+        <object-type name="AJAXResultText" sid="1880041405539633">
+            <plugin id="Text" />
         </object-type>
     </object-folder>
     <families>
