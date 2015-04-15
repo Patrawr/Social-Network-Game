@@ -323,6 +323,12 @@
                 <action id="0" name="Set text" sid="1158062024144588" type="AJAXResultText">
                     <param id="0" name="Text">&quot;Your account has been deleted.&quot;</param>
                 </action>
+                <action id="0" name="Set text" sid="8494980692511948" type="NameTextBox">
+                    <param id="0" name="Text">&quot;&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="2952196897640972" type="PasswordTextBox">
+                    <param id="0" name="Text">&quot;&quot;</param>
+                </action>
             </actions>
         </event-block>
     </events>
