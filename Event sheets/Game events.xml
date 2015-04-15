@@ -518,7 +518,11 @@
                                     <param id="2" name="Value">Multiplayer.MyID</param>
                                 </condition>
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="7019402979184207" type="Peer">
+                                    <param id="0" name="Max Speed">400</param>
+                                </action>
+                            </actions>
                             <sub-events>
                                 <comment>Note an important detail is that we rely on the bits in the &apos;inputs&apos; variable, updated by the above event, to know which controls are being pressed. We do not test actual mouse or keyboard input here. The reason for this is that the input states are by default only sent to the host 30 times a second, whereas the game typically runs at 60 FPS, so inputs are only sent about every other frame. If we tested for input directly in this event, then we might not actually send that input to the host until the next frame. This would mean locally we move the peer one more frame than the host will have, which will make the player deviate slightly more from the host and cause more input prediction error. By only moving the player with controls we know we&apos;ve already sent to the host the player is more likely to stay in sync.</comment>
                                 <event-block sid="3523813498314173">
@@ -628,7 +632,7 @@
                             </conditions>
                             <actions>
                                 <action behavior="8Direction" id="4" name="Set max speed" sid="2315115583278569" type="Peer">
-                                    <param id="0" name="Max Speed">300</param>
+                                    <param id="0" name="Max Speed">400</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -755,6 +759,9 @@
                                 <action id="-10" name="Set value" sid="6998076668578183" type="Peer">
                                     <param id="0" name="Instance variable">inputs</param>
                                     <param id="1" name="Value">Multiplayer.PeerState(Peer.peerid, &quot;inputs&quot;)</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="6382117530017337" type="Peer">
+                                    <param id="0" name="Max Speed">400</param>
                                 </action>
                             </actions>
                             <sub-events>
