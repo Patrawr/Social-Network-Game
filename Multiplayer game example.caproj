@@ -123,6 +123,7 @@
                     <instance-variable name="deaths" sid="5714395402371372" type="number" />
                     <instance-variable name="FirstShot" sid="90044639766638" type="boolean" />
                     <instance-variable name="lasthitbypeerid" sid="6358509132487602" type="string" />
+                    <instance-variable name="coins" sid="1148169822996324" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="8Direction" sid="9740459457043169">
@@ -201,6 +202,77 @@
             </object-type>
             <object-type name="ChatTextBox" sid="1379456397422598">
                 <plugin id="TextBox" />
+            </object-type>
+            <object-type name="Coin" sid="8521254134621288">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="9" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7198690335402406" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin1.png">
+                            <collision-poly>
+                                <point x="0.3125" y="0.3125" />
+                                <point x="0.5" y="0.21875" />
+                                <point x="0.6875" y="0.3125" />
+                                <point x="0.71875" y="0.5" />
+                                <point x="0.6875" y="0.6875" />
+                                <point x="0.5" y="0.78125" />
+                                <point x="0.3125" y="0.6875" />
+                                <point x="0.28125" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin2.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin3.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin4.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin5.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin6.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin7.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin8.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin9.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="UI_Coin" sid="6536850534160527">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="9" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4011600761861067" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin1.png">
+                            <collision-poly>
+                                <point x="0.3125" y="0.3125" />
+                                <point x="0.5" y="0.21875" />
+                                <point x="0.6875" y="0.3125" />
+                                <point x="0.71875" y="0.5" />
+                                <point x="0.6875" y="0.6875" />
+                                <point x="0.5" y="0.78125" />
+                                <point x="0.3125" y="0.6875" />
+                                <point x="0.28125" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin2.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin3.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin4.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin5.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin6.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin7.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin8.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin9.png" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="Static" pingpong="0" repeatcount="1" repeatto="0" sid="2772640138518" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Repositories\Social Network Game\Animations\Coin\goldCoin1.png">
+                            <collision-poly>
+                                <point x="0.3125" y="0.3125" />
+                                <point x="0.5" y="0.21875" />
+                                <point x="0.6875" y="0.3125" />
+                                <point x="0.71875" y="0.5" />
+                                <point x="0.6875" y="0.6875" />
+                                <point x="0.5" y="0.78125" />
+                                <point x="0.3125" y="0.6875" />
+                                <point x="0.28125" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Textbox_Coins" sid="2077792651288098">
+                <plugin id="Text" />
             </object-type>
         </object-folder>
         <object-type name="Multiplayer" sid="3325403568138769">

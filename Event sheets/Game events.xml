@@ -6,6 +6,7 @@
         <variable constant="1" name="GAME_NAME" sid="2783528050303823" static="0" type="text">SocialGame</variable>
         <variable constant="1" name="INSTANCE_NAME" sid="313861102059647" static="0" type="text">default</variable>
         <variable constant="1" name="ROOM_NAME" sid="9805164627532191" static="0" type="text">main</variable>
+        <variable constant="0" name="my_coins" sid="9184162616738554" static="0" type="number">0</variable>
         <event-group description="Functions to manage updating the LogText object as messages are added." sid="1791290436183513" title="Message log">
             <sub-events>
                 <comment>This is similar to the chat example, but instead of keeping a log in a text box, we keep it in an ordinary Text object so we can see things behind it. However the text object cannot scroll its text, so instead we keep the last 20 messages in an array, and update the text object from that. This is a simple way to have the messages scroll up as more messages are added.&#x0D;&#x0A;&#x0D;&#x0A;First when adding a log we add the line to the end of an array.</comment>
@@ -104,7 +105,7 @@
                         </action>
                         <action id="11" name="Sync object" sid="2351988127461845" type="Multiplayer">
                             <param id="0" name="Object">Peer</param>
-                            <param id="1" name="Data">1</param>
+                            <param id="1" name="Data">3</param>
                             <param id="2" name="Precision">2</param>
                             <param id="3" name="Bandwidth">0</param>
                         </action>
@@ -149,6 +150,19 @@
                             <param id="2" name="Precision">2</param>
                             <param id="3" name="Interpolation">0</param>
                             <param id="4" name="Client value tag">&quot;&quot;</param>
+                        </action>
+                        <action id="12" name="Sync instance variable" sid="2180776678300677" type="Multiplayer">
+                            <param id="0" name="Object">Peer</param>
+                            <param id="1" name="Instance variable">Peer|coins</param>
+                            <param id="2" name="Precision">3</param>
+                            <param id="3" name="Interpolation">0</param>
+                            <param id="4" name="Client value tag">&quot;coins&quot;</param>
+                        </action>
+                        <action id="11" name="Sync object" sid="659312514328683" type="Multiplayer">
+                            <param id="0" name="Object">Coin</param>
+                            <param id="1" name="Data">1</param>
+                            <param id="2" name="Precision">2</param>
+                            <param id="3" name="Bandwidth">0</param>
                         </action>
                         <action id="1" name="Connect" sid="7537126393271732" type="Multiplayer">
                             <param id="0" name="Server">&quot;wss://multiplayer.scirra.com&quot;</param>
@@ -245,6 +259,18 @@
                                 </action>
                                 <action id="-9" name="Destroy" sid="9105323197347259" type="Peer" />
                             </actions>
+                            <sub-events>
+                                <event-block sid="6684314849618703">
+                                    <conditions>
+                                        <condition id="-11" name="For Each" sid="2453635752054474" type="System">
+                                            <param id="0" name="Object">Coin</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Destroy" sid="8449867289086065" type="Coin" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -733,9 +759,41 @@
                                         </action>
                                     </actions>
                                 </event-block>
+                                <event-block disabled="1" sid="3186280092034687">
+                                    <conditions>
+                                        <condition id="0" name="On collision with another object" sid="587991763749933" type="Peer">
+                                            <param id="0" name="Object">Coin</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" sid="2309379703488242" type="System">
+                                            <param id="0" name="Variable">my_coins</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-9" name="Destroy" sid="8934093300326875" type="Coin" />
+                                        <action id="3" name="Start" sid="3054871173030266" type="UI_Coin">
+                                            <param id="0" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                             </sub-events>
                         </event-block>
                         <comment>As host, we also need to update all the other players to reflect what they are doing. Therefore we iterate all peers who are *not* our own player, and update their instance variables based on their latest received inputs (from the PeerState expression).</comment>
+                        <event-block sid="4174194203832675">
+                            <conditions>
+                                <condition id="1" name="Is overlapping another object" sid="7475875654024797" type="Peer">
+                                    <param id="0" name="Object">Coin</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="4593442833012274" type="Peer">
+                                    <param id="0" name="Instance variable">peerid</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">Multiplayer.MyID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="2784327310205403" type="Coin" />
+                            </actions>
+                        </event-block>
                         <event-block sid="9848056887334073">
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" sid="1724488587194735" type="Peer">
@@ -765,6 +823,16 @@
                                 </action>
                             </actions>
                             <sub-events>
+                                <event-block disabled="1" sid="4247444890845564">
+                                    <conditions>
+                                        <condition id="1" name="Is overlapping another object" sid="5589510395116233" type="Peer">
+                                            <param id="0" name="Object">Coin</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Destroy" sid="9132396764349795" type="Coin" />
+                                    </actions>
+                                </event-block>
                                 <comment>As host we are also responsible for moving each peer. Now that we have updated the &apos;inputs&apos; variable, we can simulate controls for the player depending on what their current inputs are. Since the host has the authoritative version of the game, this is their &quot;true&quot; movement; the peers will be moving themselves immediately, but if there is a discrepency, the host takes precedent and the peer must correct its own position to match that of the host.</comment>
                                 <event-block sid="6433742001913361">
                                     <conditions>
@@ -777,6 +845,9 @@
                                     <actions>
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="7102549953328855" type="Peer">
                                             <param id="0" name="Control">0</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="2060937190965246" type="Peer">
+                                            <param id="0" name="Angle">180</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -792,6 +863,9 @@
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="1299297905283037" type="Peer">
                                             <param id="0" name="Control">2</param>
                                         </action>
+                                        <action id="-8" name="Set angle" sid="7373614692358348" type="Peer">
+                                            <param id="0" name="Angle">-90</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block sid="2217910608625926">
@@ -806,6 +880,9 @@
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="2914878864602853" type="Peer">
                                             <param id="0" name="Control">1</param>
                                         </action>
+                                        <action id="-8" name="Set angle" sid="3276486409149226" type="Peer">
+                                            <param id="0" name="Angle">0</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block sid="133455056238674">
@@ -819,6 +896,9 @@
                                     <actions>
                                         <action behavior="8Direction" id="7" name="Simulate control" sid="4594040304374996" type="Peer">
                                             <param id="0" name="Control">3</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="2043985472876137" type="Peer">
+                                            <param id="0" name="Angle">90</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1086,11 +1166,11 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-10" name="Set value" sid="67252243349912" type="Peer">
+                                <action disabled="1" id="-10" name="Set value" sid="67252243349912" type="Peer">
                                     <param id="0" name="Instance variable">lookatx</param>
                                     <param id="1" name="Value">Mouse.X</param>
                                 </action>
-                                <action id="-10" name="Set value" sid="4570881774384983" type="Peer">
+                                <action disabled="1" id="-10" name="Set value" sid="4570881774384983" type="Peer">
                                     <param id="0" name="Instance variable">lookaty</param>
                                     <param id="1" name="Value">Mouse.Y</param>
                                 </action>
@@ -1098,6 +1178,26 @@
                                     <param id="0" name="State">1</param>
                                 </action>
                             </actions>
+                            <sub-events>
+                                <event-block sid="4943445423102906">
+                                    <conditions>
+                                        <condition id="1" name="Is overlapping another object" sid="6175278095169129" type="Peer">
+                                            <param id="0" name="Object">Coin</param>
+                                        </condition>
+                                        <condition id="-4" name="Trigger once while true" sid="7042035327524287" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" sid="9982837028464064" type="System">
+                                            <param id="0" name="Variable">my_coins</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-9" name="Destroy" sid="7202720829847742" type="Coin" />
+                                        <action id="3" name="Start" sid="7082401082286413" type="UI_Coin">
+                                            <param id="0" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <comment>All players are pointed at their &apos;lookatx&apos; and &apos;lookaty&apos; variables, and the AimSpot object (in a container with Peer) positioned to the same location to indicate the aim point. The host and peers update these values in different ways, but both always need players to be actually pointing at their look-at positions. We also position the PeerName labels above each peer and set it to their name, so we can see who is who, and display their stats (health, kills and deaths). Finally we make sure the lasers and aim spots appear on the &quot;Lasers&quot; layer, since syncing objects does not always put them on the right layer.</comment>
                         <event-block sid="5649120662471453">
@@ -1131,6 +1231,9 @@
                                 </action>
                                 <action id="-26" name="Move to layer" sid="344509275179337" type="PeerName">
                                     <param id="0" name="Layer">&quot;Details&quot;</param>
+                                </action>
+                                <action id="0" name="Set text" sid="9773098101335457" type="Textbox_Coins">
+                                    <param id="0" name="Text">my_coins</param>
                                 </action>
                             </actions>
                             <sub-events>
