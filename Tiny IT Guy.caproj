@@ -25,6 +25,7 @@
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="Flash" version="1">Flash</behavior>
         <behavior author="Scirra" id="Physics" version="1">Physics</behavior>
         <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
@@ -151,6 +152,9 @@
                     <behavior-type name="Physics" sid="7042627656168492">
                         <behavior id="Physics" />
                     </behavior-type>
+                    <behavior-type name="Flash" sid="1654441663683044">
+                        <behavior id="Flash" />
+                    </behavior-type>
                 </behaviors>
                 <container>
                     <type>Peer</type>
@@ -160,8 +164,8 @@
                 </container>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8757907285038088" speed="5">
-                        <frame duration="1" hotspotX="0.425743" hotspotY="0.49505">
-                            <image-point name="Imagepoint 1" x="1.0396" y="0.514852" />
+                        <frame duration="1" hotspotX="0.409091" hotspotY="0.483871" original-source="C:\Repositories\Social Network Game\Textures\playerBlue5.png">
+                            <image-point name="Imagepoint 1" x="1.04545" y="0.516129" />
                             <collision-poly>
                                 <point x="0.235149" y="0.0990102" />
                                 <point x="0.425743" y="0" />

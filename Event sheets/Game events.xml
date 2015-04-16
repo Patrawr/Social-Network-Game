@@ -1221,6 +1221,11 @@
                                     <param id="2" name="Message">&quot;1&quot;</param>
                                     <param id="3" name="Mode">1</param>
                                 </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="2223459372017261" type="Peer">
+                                    <param id="0" name="&apos;On&apos; time">0.1</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.1</param>
+                                    <param id="2" name="Duration">1</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block sid="4397438654040415">
@@ -1237,6 +1242,11 @@
                                 <action id="0" name="Call function" sid="7171932021173883" type="Function">
                                     <param id="0" name="Name">&quot;AddChat&quot;</param>
                                     <param id="1" name="Parameter {n}">Multiplayer.MyAlias{###}&quot;You have received recommendation from &quot;&amp;Multiplayer.FromAlias</param>
+                                </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="9990232215671941" type="Peer">
+                                    <param id="0" name="&apos;On&apos; time">0.1</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.1</param>
+                                    <param id="2" name="Duration">1</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -1459,13 +1469,14 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block any="1" sid="934375169164242">
+                                <event-block sid="934375169164242">
                                     <conditions>
                                         <condition id="6" name="On object clicked" sid="7951381362063963" type="Mouse">
                                             <param id="0" name="Mouse button">0</param>
                                             <param id="1" name="Click type">0</param>
                                             <param id="2" name="Object clicked">Cancel</param>
                                         </condition>
+                                        <condition id="-9" name="Is visible" sid="7836116752318367" type="Cancel" />
                                     </conditions>
                                     <actions>
                                         <action id="-15" name="Set visible" sid="307482850756397" type="Cancel">
@@ -1546,6 +1557,7 @@
                                             <param id="1" name="Click type">0</param>
                                             <param id="2" name="Object clicked">RightDialogButton</param>
                                         </condition>
+                                        <condition id="-9" name="Is visible" sid="204054834302369" type="RightDialogButton" />
                                     </conditions>
                                     <actions>
                                         <action id="-15" name="Set visible" sid="2761747308884822" type="DialogBackground">
@@ -1580,6 +1592,7 @@
                                             <param id="1" name="Click type">0</param>
                                             <param id="2" name="Object clicked">LeftDialogButton</param>
                                         </condition>
+                                        <condition id="-9" name="Is visible" sid="3836636735821803" type="LeftDialogButton" />
                                     </conditions>
                                     <actions>
                                         <action id="-10" name="Add to" sid="1570984715006347" type="System">
