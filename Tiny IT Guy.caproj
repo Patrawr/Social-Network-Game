@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2project>
-    <name>Multiplayer game example</name>
+    <name>Tiny IT Guy</name>
     <description></description>
     <version>1.0.0.0</version>
     <author></author>
@@ -317,6 +317,9 @@
                 </animation-folder>
             </object-type>
             <object-type name="UI_RepairText" sid="1695392140345254">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="UI_RecommendationText" sid="5290568360832906">
                 <plugin id="Text" />
             </object-type>
         </object-folder>

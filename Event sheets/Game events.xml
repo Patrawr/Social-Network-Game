@@ -10,6 +10,7 @@
         <variable constant="0" name="my_silicon" sid="2517801758980241" static="0" type="number">0</variable>
         <variable constant="0" name="siliconToEarn" sid="712841650934634" static="0" type="number">0</variable>
         <variable constant="0" name="repair_timer" sid="3378680814927693" static="0" type="number">20</variable>
+        <variable constant="0" name="my_recommendation" sid="4024523644308995" static="0" type="number">0</variable>
         <variable constant="0" name="repair_time" sid="2514571403770333" static="0" type="number">20</variable>
         <event-group description="Functions to manage updating the LogText object as messages are added." sid="1791290436183513" title="Message log">
             <sub-events>
@@ -155,7 +156,7 @@
                             <param id="3" name="Interpolation">0</param>
                             <param id="4" name="Client value tag">&quot;&quot;</param>
                         </action>
-                        <action disabled="1" id="12" name="Sync instance variable" sid="2180776678300677" type="Multiplayer">
+                        <action id="12" name="Sync instance variable" sid="2180776678300677" type="Multiplayer">
                             <param id="0" name="Object">Peer</param>
                             <param id="1" name="Instance variable">Peer|coins</param>
                             <param id="2" name="Precision">3</param>
@@ -834,16 +835,6 @@
                                 </action>
                             </actions>
                             <sub-events>
-                                <event-block disabled="1" sid="4247444890845564">
-                                    <conditions>
-                                        <condition id="1" name="Is overlapping another object" sid="5589510395116233" type="Peer">
-                                            <param id="0" name="Object">Coin</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Destroy" sid="9132396764349795" type="Coin" />
-                                    </actions>
-                                </event-block>
                                 <comment>As host we are also responsible for moving each peer. Now that we have updated the &apos;inputs&apos; variable, we can simulate controls for the player depending on what their current inputs are. Since the host has the authoritative version of the game, this is their &quot;true&quot; movement; the peers will be moving themselves immediately, but if there is a discrepency, the host takes precedent and the peer must correct its own position to match that of the host.</comment>
                                 <event-block sid="6433742001913361">
                                     <conditions>
@@ -1210,6 +1201,45 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
+                        <event-block sid="325908232345599">
+                            <conditions>
+                                <condition id="6" name="On object clicked" sid="4976582328288548" type="Mouse">
+                                    <param id="0" name="Mouse button">0</param>
+                                    <param id="1" name="Click type">0</param>
+                                    <param id="2" name="Object clicked">Peer</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="1729839344041006" type="Peer">
+                                    <param id="0" name="Instance variable">peerid</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">Multiplayer.MyID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="8" name="Send message" sid="829571590435675" type="Multiplayer">
+                                    <param id="0" name="Peer ID">Peer.peerid</param>
+                                    <param id="1" name="Tag">&quot;recommendation&quot;</param>
+                                    <param id="2" name="Message">&quot;1&quot;</param>
+                                    <param id="3" name="Mode">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4397438654040415">
+                            <conditions>
+                                <condition id="15" name="On peer message" sid="6926177053086566" type="Multiplayer">
+                                    <param id="0" name="Tag">&quot;recommendation&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" sid="5544056063104357" type="System">
+                                    <param id="0" name="Variable">my_recommendation</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Call function" sid="7171932021173883" type="Function">
+                                    <param id="0" name="Name">&quot;AddChat&quot;</param>
+                                    <param id="1" name="Parameter {n}">Multiplayer.MyAlias{###}&quot;You have received recommendation from &quot;&amp;Multiplayer.FromAlias</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <comment>All players are pointed at their &apos;lookatx&apos; and &apos;lookaty&apos; variables, and the AimSpot object (in a container with Peer) positioned to the same location to indicate the aim point. The host and peers update these values in different ways, but both always need players to be actually pointing at their look-at positions. We also position the PeerName labels above each peer and set it to their name, so we can see who is who, and display their stats (health, kills and deaths). Finally we make sure the lasers and aim spots appear on the &quot;Lasers&quot; layer, since syncing objects does not always put them on the right layer.</comment>
                         <event-block sid="5649120662471453">
                             <conditions>
@@ -1249,10 +1279,19 @@
                                 <action id="0" name="Set text" sid="7270140636651995" type="Textbox_Silicon">
                                     <param id="0" name="Text">my_silicon</param>
                                 </action>
+                                <action id="0" name="Set text" sid="9740171541809722" type="UI_RecommendationText">
+                                    <param id="0" name="Text">&quot;Recommendation: &quot;&amp;my_recommendation</param>
+                                </action>
                             </actions>
                             <sub-events>
                                 <event-block sid="9050799114181321">
-                                    <conditions />
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="5024201951789559" type="Peer">
+                                            <param id="0" name="Instance variable">peerid</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">Multiplayer.MyID</param>
+                                        </condition>
+                                    </conditions>
                                     <actions />
                                 </event-block>
                             </sub-events>
